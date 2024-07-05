@@ -4,12 +4,9 @@ class Solution
     {
         
         // code here
-      
+        Long rem, gcd , lcm;
         
-       Long rem, gcd , lcm;
-
-
-        Long first = a ;
+       Long first = a ;
        Long sec = b ;
         
         while(b%a!=0)
@@ -26,4 +23,4 @@ class Solution
         
         
     }
-};
+}
