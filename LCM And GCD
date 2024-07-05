@@ -1,0 +1,29 @@
+class Solution 
+{
+    static Long[] lcmAndGcd(Long a , Long b) 
+    {
+        
+        // code here
+      
+        
+       Long rem, gcd , lcm;
+
+
+        Long first = a ;
+       Long sec = b ;
+        
+        while(b%a!=0)
+        {
+            rem=b%a;
+            b=a;
+            a=rem;
+        }
+        
+        gcd =a ;
+        lcm = (first*sec)/gcd;
+        
+        return new Long[]{lcm,gcd};
+        
+        
+    }
+};
