@@ -3,8 +3,7 @@ class Solution
     static long sumOfDivisors(int N)
     {
         
-        
-        // code here
+       // code here
        long ans=0;
        for(int i =1;i<=N;i++)
        {
@@ -14,3 +13,4 @@ class Solution
         
     }
 }
+
