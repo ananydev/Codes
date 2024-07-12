@@ -1,0 +1,19 @@
+class Solution 
+{
+    static ArrayList<Long> factorialNumbers(long n) 
+    {
+         ArrayList<Long> result = new ArrayList<>();
+        long factorial = 1;
+        long i = 1;
+        
+        // Compute factorial numbers until the next factorial exceeds n
+        while (factorial <= n) {
+            result.add(factorial);
+            i++;
+            factorial *= i; // Next factorial: i!
+        }
+        
+        return result;
+
+    }
+}
