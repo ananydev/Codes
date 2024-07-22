@@ -16,7 +16,7 @@ class Solution
             a=rem;
         }
         
-        gcd =a ;
+        gcd = a ;
         lcm = (first*sec)/gcd;
         
         return new Long[]{lcm,gcd};
