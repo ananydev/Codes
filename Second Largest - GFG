@@ -1,0 +1,23 @@
+class Solution {
+    public int print2largest(List<Integer> arr)
+    {
+        // Code Here
+     int Largest = arr.get(0);
+        int SecLargest = -1;
+        
+        for(int i=0;i<arr.size();i++)
+        {
+            if(arr.get(i) > Largest)
+            {
+                SecLargest = Largest;
+                Largest = arr.get(i);
+            }
+            
+            else if(arr.get(i) < Largest && arr.get(i) > SecLargest)
+            {
+                SecLargest = arr.get(i);
+            }
+        }
+        return SecLargest;
+    }
+}
