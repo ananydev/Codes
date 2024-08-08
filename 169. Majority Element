@@ -1,0 +1,31 @@
+class Solution {
+    public int majorityElement(int[] nums)
+     {
+         Arrays.sort(nums);
+        int count = 1;                          // Initialize count to 1 for the first element
+        int max =nums[0];
+        
+        for (int i = 1; i < nums.length; i++) 
+        {
+            if (nums[i] == nums[i - 1]) 
+            {
+                count++;
+            } 
+            
+            else
+             {
+                count = 1;                     // Reset count for the new element
+            }
+
+            // Update the candidate if the current count is greater
+            if (count > nums.length / 2)
+             {
+                max = nums[i];
+                break;                         // Majority element found, exit the loop early
+            }
+        }
+        
+        return max;
+    }
+            }
+ 
