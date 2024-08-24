@@ -1,0 +1,35 @@
+
+class Solve {
+    Pair getFloorAndCeil(int[] arr, int n, int x)
+    {
+        // code here
+        Arrays.sort(arr);
+        List<Integer> res=new ArrayList<>();
+        int l=0;
+        int h=n-1;
+        while(l<=h)
+        {
+           int mid=(l+h)/2;
+            
+            if(x==arr[mid])
+            return new Pair (arr[mid], arr[mid]);
+            
+            if(x<arr[mid])
+            h=mid-1;
+            
+            else
+            l=mid+1;
+        }
+        if(h>=0 && l<n)
+       return new Pair(arr[h],arr[l]);
+       
+       else if(h<0 && l<n)
+        return new Pair(-1,arr[l]);
+        
+        else
+         return new Pair(arr[h],-1);
+       
+
+        
+    }
+}
