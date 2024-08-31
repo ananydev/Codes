@@ -1,0 +1,24 @@
+
+
+// User function Template for Java
+
+class Solution {
+    public int findKRotation(List<Integer> arr)
+    {
+        
+        
+        // Code here 
+       int n = arr.size();
+        int minIndex = 0;
+        
+        // Iterate through the array to find the index of the minimum element
+        for (int i = 1; i < n; i++) {
+            if (arr.get(i) < arr.get(minIndex)) {
+                minIndex = i;
+            }
+        }
+        
+        // The index of the minimum element is the number of rotations
+        return minIndex;
+    }
+}
