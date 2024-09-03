@@ -1,0 +1,33 @@
+// Function to find square root
+// x: element to find square root
+
+class Solution
+{
+     long floorSqrt(long n)
+	 {
+	
+	
+		// Your code here
+		 long low = 1, high = n;
+        
+        while (low <= high)
+        {
+            long mid = (low + high) / 2;
+            
+            if (mid*mid <= (long)(n)) 
+            {
+                
+                //eliminate the left half:
+                low = (long)(mid + 1);
+            } 
+            
+           
+            else 
+            {
+                //eliminate the right half:
+                high = (long)(mid - 1);
+            }
+        }
+        return high;
+	 }
+}
