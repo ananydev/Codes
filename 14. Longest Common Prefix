@@ -4,7 +4,7 @@ class Solution {
         
     StringBuilder result = new StringBuilder();
 
-    // Sort the array
+    // Sort the arrays
     Arrays.sort(strs);
 
     // Get the first and last strings
