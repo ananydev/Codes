@@ -18,7 +18,7 @@ class Solution {
         for (char c : characters) 
         {
             int frequency = frequencyMap.get(c);
-            for (int i = 0; i < frequency; i++)
+            for (int i=0; i < frequency; i++)
              {
                 result.append(c);
             }
