@@ -1,0 +1,29 @@
+class Solution {
+    public String frequencySort(String s) 
+    {
+
+      // Create a map to count the frequency of each character
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+        for (char c : s.toCharArray())
+         {
+            frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+        }
+
+        // Convert map to a list of characters sorted by frequency
+        List<Character> characters = new ArrayList<>(frequencyMap.keySet());
+        characters.sort((a, b) -> frequencyMap.get(b) - frequencyMap.get(a));
+
+        // Build the result string based on the sorted characters
+        StringBuilder result = new StringBuilder();
+        for (char c : characters) 
+        {
+            int frequency = frequencyMap.get(c);
+            for (int i = 0; i < frequency; i++)
+             {
+                result.append(c);
+            }
+        }
+
+        return result.toString();
+    }
+}   
