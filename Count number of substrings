@@ -21,9 +21,10 @@ class Solution
                {
                 char leftChar = s.charAt(left);
                 charFrequency.put(leftChar, charFrequency.get(leftChar) - 1);
-                if (charFrequency.get(leftChar) == 0) {
+                if (charFrequency.get(leftChar) == 0) 
+                 {
                     charFrequency.remove(leftChar);
-                }
+                 }
                 left++;
             }
 
