@@ -17,7 +17,8 @@ class Solution
             char c = s.charAt(right);
             charFrequency.put(c, charFrequency.getOrDefault(c, 0) + 1);
 
-            while (charFrequency.size() > k) {
+            while (charFrequency.size() > k) 
+               {
                 char leftChar = s.charAt(left);
                 charFrequency.put(leftChar, charFrequency.get(leftChar) - 1);
                 if (charFrequency.get(leftChar) == 0) {
