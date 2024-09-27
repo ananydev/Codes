@@ -1,0 +1,39 @@
+
+class Solution
+{
+    long substrCount (String str, int k)
+    {
+      return atMostKDistinct(str, k) - atMostKDistinct(str, k - 1);
+    }
+
+    private int atMostKDistinct(String s, int k) {
+        int n = s.length();
+        int count = 0;
+        int left = 0;
+        Map<Character, Integer> charFrequency = new HashMap<>();
+
+        for (int right = 0; right < n; right++) {
+            char c = s.charAt(right);
+            charFrequency.put(c, charFrequency.getOrDefault(c, 0) + 1);
+
+            while (charFrequency.size() > k) {
+                char leftChar = s.charAt(left);
+                charFrequency.put(leftChar, charFrequency.get(leftChar) - 1);
+                if (charFrequency.get(leftChar) == 0) {
+                    charFrequency.remove(leftChar);
+                }
+                left++;
+            }
+
+            count += right - left + 1;
+        }
+
+        return count;
+        
+        
+        
+        
+        
+
+    }
+}
