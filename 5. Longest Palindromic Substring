@@ -1,5 +1,6 @@
 public class Solution {
-    public String longestPalindrome(String s) {
+    public String longestPalindrome(String s) 
+       {
         if (s.length() <= 1) {
             return s;
         }
