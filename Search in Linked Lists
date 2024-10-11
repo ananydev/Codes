@@ -7,7 +7,8 @@
     Node(int d)  { data = d;  next = null; }
 }
 */
-class Solution {
+class Solution
+{
     static boolean searchKey(int n, Node head, int key)
     {
         // Code here
@@ -20,5 +21,5 @@ class Solution {
             temp=temp.next;
         }
         return false;
-        }
+    }
 }
