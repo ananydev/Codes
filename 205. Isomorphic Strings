@@ -9,7 +9,7 @@ class Solution
         
 // Create a hashmap to store character mappings
         Map<Character, Character> charMappingMap = new HashMap<>();
-        for (int i=0; i < s.length(); i++)
+        for (int i=0; i< s.length(); i++)
          {
             char original = s.charAt(i);
             char replacement = t.charAt(i);
