@@ -10,8 +10,7 @@
  */
 class Solution 
 {
-
-    private static ListNode reverse(ListNode head)
+   private static ListNode reverse(ListNode head)
     {
         ListNode prev = null;
         ListNode curr = head;
