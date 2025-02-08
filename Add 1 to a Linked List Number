@@ -42,7 +42,7 @@ class Solution
            head = newNode;
        }
        
-           return head;
+        return head;
     }
 }
 
