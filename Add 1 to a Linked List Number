@@ -29,9 +29,6 @@ class Solution
         temp.data = 0;
         return 1;
         }
-        
-
-
 
     public static Node addOne(Node head) 
     { 
