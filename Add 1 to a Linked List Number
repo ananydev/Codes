@@ -8,7 +8,7 @@ class Node{
         next = null;
     }
 } 
-*/
+ */
 
 class Solution
 {
