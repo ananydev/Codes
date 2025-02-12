@@ -31,7 +31,7 @@ public class Solution
         tempB = headB;
         if(lengthA>lengthB)
         {
-            int steps=lengthA-lengthB;
+            int steps=lengthA-lengthB ;
             for(int i=1;i<=steps;i++)
             {
                 tempA=tempA.next;
