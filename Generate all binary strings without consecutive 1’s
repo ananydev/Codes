@@ -3,15 +3,18 @@
 import java.util.*;
 import java.lang.*;
 
-public class BinaryS {
+public class BinaryS 
+{
 
-    // Array conversion to String--
-    public static String toString(char[] a) {
+    
+    public static String toString(char[] a)        // Array conversion to String--
+   {
         String string = new String(a);
         return string;
     }
 
-    static void generate(int k, char[] ch, int n) {
+    static void generate(int k, char[] ch, int n) 
+   {
       
         // Base Condition when we 
         // reached at the end of Array**
