@@ -1,0 +1,54 @@
+APPROACH 1
+TC- 0(2N)
+INTERVIEWER MIGHT BE HAPPY WITH THIS BUT FOR TOUGHER COMPANIES , IT CAN BE ASKED TO GO TO O(N)
+
+int  l = 0, r = 0, zeros = 0;
+int maxlen = 0;
+
+while (r < nums.size()) {
+    if (nums[r] == 0)
+        zeros++;
+
+    while (zeros > k) {
+        if (nums[l] == 0)
+            zeros--;
+        l++;
+    }
+
+    if (zeros <= k) {
+        int len = r - l + 1;
+        maxlen = max(len, maxlen);
+    }
+
+    r++;
+}
+
+APPROACH 2 
+TC - 0(N)
+
+class Solution {
+    public int longestOnes(int[] nums, int k)
+    {
+         int left = 0;
+        int flip = k;
+        int max = 0;
+        for(int right = 0; right < nums.length; right++)
+        {
+            if(nums[right] == 0)
+            {
+                flip--;
+            }
+            while(flip < 0)
+            {
+                if(nums[left] == 0)
+                {
+                    flip++;
+                }
+                left++;
+            }
+            max = Math.max(max, right - left + 1); 
+        }
+        return max;
+        
+    }
+}
