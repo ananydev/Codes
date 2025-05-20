@@ -1,4 +1,5 @@
-class stack {
+class stack 
+{
   private class stackNode {
     int data;
     stackNode next;
