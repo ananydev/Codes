@@ -1,0 +1,23 @@
+class Solution {
+     public int numberOfSubarrays(int[] nums, int k)
+     {
+        return atMost(nums, k) - atMost(nums, k - 1);
+    }
+
+     private int atMost(int[] nums, int k) 
+     {
+        int r, l = 0, sum = 0, res = 0;                 //r-right l-left
+        for (r=0; r<nums.length; r++) 
+        {
+            sum += (nums[r])%2;
+            while (sum>k && l<=r) 
+            {
+                sum -= (nums[l])%2;
+                l++;
+            }
+            res += r - l + 1;
+        }
+        return res;
+        
+    }
+}
