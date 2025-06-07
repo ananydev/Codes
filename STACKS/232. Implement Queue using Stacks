@@ -27,10 +27,7 @@ class MyQueue {
     }
 
 
-        
-    
-    
-    public int peek()
+ public int peek()
      {
           while(st.size()>1)
         {
