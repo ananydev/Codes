@@ -2,10 +2,10 @@ import java.util.Stack;
 
 class TUF {
 
-  // A utility function to return
-  // precedence of a given operator
-  // Higher returned value means
-  // higher precedence
+  // A utility function to return precedence of a given operator Higher returned value means higher precedence
+  
+  
+
   static int Prec(char ch) {
     switch (ch) {
     case '+':
