@@ -1,0 +1,94 @@
+class Solution {
+    public long subArrayRanges(int[] nums) 
+    {
+        long min=0L;
+        int[] leftSmallest= previousSmaller(nums);
+        int[] rightSmallest= nextSmaller(nums);
+        for(int i=0;i<nums.length;i++)
+        {
+            long leftNumber= i - leftSmallest[i];
+            long rightNumber= rightSmallest[i] - i;
+            min= (min + (leftNumber * rightNumber * nums[i]));
+        }
+
+        long max=0L;
+        int[] leftLargest= previousLargest(nums);
+        int[] rightLargest= nextLargest(nums);
+        for(int i=0;i<nums.length;i++)
+        {
+            long leftNumber= i - leftLargest[i];
+            long rightNumber= rightLargest[i] - i;
+            max= (max + (leftNumber * rightNumber * nums[i]));
+        }
+
+        return max-min;
+    }
+
+
+    public int[] nextSmaller(int[] nums)
+    {
+        Stack<Integer> st=new Stack<>();
+        int[] nse=new int[nums.length];
+        for(int i=nums.length-1;i>=0;i--)
+        {
+            while(!st.isEmpty() && nums[st.peek()]>=nums[i])
+            {
+                st.pop();
+            }
+            nse[i]=st.isEmpty()? nums.length : st.peek();
+            st.push(i);
+        }
+        return nse;
+    }
+
+
+    public int[] previousSmaller(int[] nums)
+    {
+        Stack<Integer> st=new Stack<>();
+        int[] pse=new int[nums.length];
+        for(int i=0;i<nums.length;i++)
+        {
+            while(!st.isEmpty() && nums[st.peek()]>nums[i])
+            {
+                st.pop();
+            }
+            pse[i]= st.isEmpty() ? -1 : st.peek();
+            st.push(i);
+        }
+        return pse;
+    }
+
+
+    public int[] nextLargest(int[] nums)
+    {
+        Stack<Integer> st=new Stack<>();
+        int[] nle=new int[nums.length];
+        for(int i=nums.length-1;i>=0;i--)
+        {
+            while(!st.isEmpty() && nums[st.peek()]<=nums[i])
+            {
+                st.pop();
+            }
+            nle[i]= st.isEmpty() ? nums.length : st.peek();
+            st.push(i);
+        }
+        return nle;
+    }
+
+
+    public int[] previousLargest(int[] nums)
+    {
+        Stack<Integer> st=new Stack<>();
+        int[] ple=new int[nums.length];
+        for(int i=0;i<nums.length;i++)
+        {
+            while(!st.isEmpty() && nums[st.peek()]< nums[i])
+            {
+                st.pop();
+            }
+            ple[i] = st.isEmpty() ? -1: st.peek();
+            st.push(i);
+        }
+        return ple;
+    }
+}
