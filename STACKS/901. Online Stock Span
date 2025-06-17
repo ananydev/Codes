@@ -12,7 +12,7 @@ class StockSpanner
       
         while(!st.isEmpty() && st.peek()[0] <= price)
         {
-            st.pop();
+            st.pop() ;
         }
 
         idx++;
