@@ -12,7 +12,7 @@ class Solution
             while(!stack.isEmpty() && k>0 && ch<stack.peek())
             {
                 stack.pop();
-                k --;
+                k -- ;
             }
              stack.push(ch);
          }
