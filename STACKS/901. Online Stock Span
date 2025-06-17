@@ -16,7 +16,7 @@ class StockSpanner
 
         idx++;
 
-        int ans = idx - (st.isEmpty() ? 0 : st.peek()[1]);              // remember to find answer before pushing to stack
+        int ans = idx - (st.isEmpty() ? 0 : st.peek()[1]);             // remember to find answer before pushing to stack
 
         st.push(new int[]{price,idx});
         return ans ;
