@@ -1,0 +1,76 @@
+class Solution {
+    public int sumSubarrayMins(int[] arr) 
+    {
+       int[] nextSm = nextSmaller(arr);
+       int[] prevSm = prevSmaller(arr);
+       int mod = 1000000007;
+       long count = 0;
+       
+       for(int i=0; i<arr.length; i++) 
+       {
+        int first = i-prevSm[i];
+        int sec = nextSm[i]-i;
+        long prod = (first*sec)%mod;
+        prod = (prod*arr[i])%mod;
+        count = (count%mod+prod)%mod;
+       }
+        return (int)count;
+    }
+
+
+    private int[] nextSmaller(int[] arr) 
+    {
+        int i;
+        Stack<Integer> st = new Stack<>();
+        int[] ans = new int[arr.length];
+        
+        for(i=arr.length-1; i>=0; i--) 
+        {
+            while(!st.isEmpty() && arr[st.peek()]>=arr[i]) 
+            {
+                st.pop();
+            }
+                
+                if(st.isEmpty()) 
+                {
+                    ans[i]=arr.length;
+                }
+                else
+                {
+                    ans[i]=st.peek();
+                }
+            st.push(i);
+        }
+            
+            return ans;
+        
+    }
+
+
+    private int[] prevSmaller(int[] arr)
+     {
+        int i;
+        Stack<Integer> st = new Stack<>();
+        int[] ans = new int[arr.length];
+        
+        for(i=0; i<arr.length; i++) 
+        {
+            while(!st.isEmpty() && arr[st.peek()]>arr[i]) 
+            {
+                st.pop();
+            }
+                if(st.isEmpty()) 
+                  ans[i]=-1;
+                
+                else 
+                  ans[i]=st.peek();
+
+              st.push(i);     
+        }
+                        
+        return ans;
+     }
+}
+
+// ASKED BY FAANG
+
