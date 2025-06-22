@@ -1,0 +1,65 @@
+// 🧠 Sliding Window Maximum Approach (Using Deque)
+// 1. Initialize a Deque to store indices of elements (not the actual values).
+
+// 2. Iterate through the array from left to right.
+
+// 3. Remove Out-of-Window Indices:
+
+//    -If the index at the front of the deque is out of the current window, remove it.
+
+//    -This ensures all indices in the deque are within the current window of size k.
+
+// 4. Maintain Decreasing Order:
+
+//    - Remove all indices from the back of the deque whose corresponding values are less than the current element.
+
+//    - This maintains a decreasing order of values in the deque.
+
+//5.  Add Current Index:
+
+// Add the current element's index to the back of the deque.
+
+// 6. Store Maximum:
+
+//      - If the window has hit size k, the front of the deque represents the maximum of the current window.
+
+//       - Store the value corresponding to the front index in the result array.
+
+//7.  Repeat until the end of the array and return the result array containing max of all windows.
+
+
+
+class Solution 
+{
+    public int[] maxSlidingWindow(int[] nums, int k)
+    {
+        int n = nums.length;
+        int[] ans = new int[n - k + 1];
+        int ri = 0;
+        // store index
+        Deque < Integer > q = new ArrayDeque < > ();
+
+        for (int i = 0; i < nums.length; i++) 
+        {
+            // remove numbers out of range k
+            if (!q.isEmpty() && q.peek() == i - k)       //in this we have taken bottom as front(striver)
+            {
+                q.poll();
+            }
+            // remove smaller numbers in k range as they are useless
+            while (!q.isEmpty() && nums[q.peekLast()] < nums[i])          // from q.peekLast we get topmost element
+            {
+                q.pollLast();
+            }
+
+            q.offer(i);
+            if (i >= k - 1) 
+            {
+                ans[ri++] = nums[q.peek()];
+            }
+        }
+        return ans;
+
+    }
+}
+
