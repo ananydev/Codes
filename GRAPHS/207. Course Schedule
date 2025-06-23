@@ -1,0 +1,64 @@
+class Solution {
+    public boolean canFinish(int v, int[][] prerequisites)     //V-numCourses
+    {
+        
+        // Form a graph using adjacency list
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for (int i=0; i<v; i++) 
+        {
+            adj.add(new ArrayList<>());
+        }
+
+        int m = prerequisites.length;
+        for (int i=0; i<m; i++) 
+        {
+            adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        }
+
+        // Create indegree array
+        int[] indegree = new int[v];
+        for (int i = 0; i < v; i++)
+         {
+            for (int it : adj.get(i))
+             {
+                indegree[it]++;
+            }
+        }
+
+        // Use a queue to perform Kahn's Algorithm for Topological Sorting
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < v; i++) 
+        {
+            if (indegree[i] == 0) 
+            {
+                q.add(i);
+            }
+        }
+
+        // List to store topological sort
+        List<Integer> topo = new ArrayList<>();
+
+        while (!q.isEmpty()) {
+            int node = q.peek();
+            q.remove();
+            topo.add(node);
+
+            // Reduce the indegree of the adjacent nodes
+            for (int it : adj.get(node)) 
+            {
+                indegree[it]--;
+                if (indegree[it] == 0) 
+                
+                {
+                    q.add(it);
+                }
+            }
+        }
+
+        // If topo sort contains all nodes, then it's possible
+        return topo.size() == v;
+    }
+}
+
+        
+    
