@@ -1,0 +1,70 @@
+class Solution
+{
+    // Recursive function to calculate the maximum sum without picking adjacent elements
+    public int fun(int[] arr, int i, int[] dp) 
+    {
+        // Base case: If the index is out of bounds (negative), return 0
+        if(i < 0) 
+        {
+            return 0;
+        }
+        // If the value at index i is already computed, use it (avoid recomputation)
+        if(dp[i] != -1) 
+        {
+            return dp[i];
+        }
+        // Base case: If at the first element, return its value as there are no prior elements to consider
+        if(i == 0) 
+        {
+            return arr[i];
+        }
+        // Calculate the sum when picking the current element and skipping one before (i-2)
+        int take = arr[i] + fun(arr, i - 2, dp);
+        // Calculate the sum when not picking the current element (consider previous element instead, i-1)
+        int notTake = fun(arr, i - 1, dp);
+        // Store the maximum of picking or not picking the current element in dp[i]
+        dp[i] = Math.max(take, notTake);
+        return dp[i];
+    }
+
+    public int rob(int[] nums) 
+    {
+        // Special arrays to consider the two cases:
+        // 1. Excluding the last element
+        // 2. Excluding the first element
+        int[] arr1 = new int[nums.length - 1];
+        int[] arr2 = new int[nums.length - 1];
+        // Array to store computed results (memoization)
+        int[] dp = new int[nums.length];
+        
+        // Fill arr1 by excluding the last element of nums
+        for(int i = 0; i < nums.length - 1; i++) 
+        {
+            arr1[i] = nums[i];
+        }
+        
+        // Fill arr2 by excluding the first element of nums
+        for(int i = 1; i < nums.length; i++) 
+        {
+            arr2[i - 1] = nums[i];
+        }
+        
+        // Fill dp array with -1 to signify uncomputed results
+        Arrays.fill(dp, -1);
+        // Calculate maximum sum for the case excluding the last element
+        int n1 = fun(arr1, arr1.length - 1, dp);
+        
+        // Reset dp array for fresh computation in the next case
+        Arrays.fill(dp, -1);
+        // Calculate maximum sum for the case excluding the first element
+        int n2 = fun(arr2, arr2.length - 1, dp);
+        
+        // Special case: If only one element exists, return its value directly
+        if(nums.length == 1) 
+        {
+            return nums[0];
+        }
+        // Return the maximum of both cases (either excluding the first or the last element)
+        return Math.max(n1, n2);
+    }
+}
