@@ -1,6 +1,7 @@
 import java.util.*;
 
-class TUF {
+class TUF 
+{
     // Function to check if it's possible to partition the array into two equal subsets
     static boolean canPartition(int n, int[] arr) {
         // Calculate the total sum of the array elements
