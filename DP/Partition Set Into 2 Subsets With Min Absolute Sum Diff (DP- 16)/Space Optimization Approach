@@ -1,6 +1,7 @@
 import java.util.*;
 
-public class Main {
+public class Main 
+{
     // Function to calculate the minimum absolute difference of two subsets
     static int minSubsetSumDifference(ArrayList<Integer> arr, int n) {
         int totSum = 0;
