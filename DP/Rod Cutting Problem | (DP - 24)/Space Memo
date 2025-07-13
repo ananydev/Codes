@@ -1,6 +1,7 @@
 import java.util.*;
 
-class TUF {
+class TUF 
+{
     // Function to solve the unbounded knapsack problem
     static int unboundedKnapsack(int n, int W, int[] val, int[] wt) {
         // Create an array to store the maximum value for each capacity from 0 to W
