@@ -1,6 +1,7 @@
 import java.util.*;
 
-class TUF {
+class TUF 
+{
     // Function to calculate the minimum edit distance between two strings
     static int editDistance(String S1, String S2) {
         int n = S1.length();
