@@ -1,0 +1,48 @@
+class Solution
+ {
+   
+    public int longestCommonSubsequence(String a, String b) 
+    {
+        int m = a.length();       // Get the length of the first string
+        int n = b.length();       // Get the length of the second string
+        
+        // Create a 2D array `dp` with dimensions (m+1) x (n+1)
+        // Each cell `dp[i][j]` will store the length of the longest common subsequence
+        // for the substrings `a[0...i-1]` and `b[0...j-1]`
+        int [][] dp = new int[m+1][n+1];
+        
+        // Initialize the first row and column with 0s
+        // This represents the base case where one of the strings is empty,
+        // so the longest common subsequence length is 0.
+        for (int i = 0; i < m + 1; i++) 
+        {
+            for (int j = 0; j < n + 1; j++) 
+            {
+                if (i == 0 || j == 0) 
+                {
+                    dp[i][j] = 0; // No common subsequence if one of the strings is empty
+                }
+            }
+        }
+        
+        // Fill the dp array by comparing characters of `a` and `b`
+        for (int i = 1; i < m + 1; i++) 
+        {                                                                      // Iterate over each character in `a`
+            for (int j = 1; j < n + 1; j++) 
+            {                                                                 // Iterate over each character in `b`
+                if (a.charAt(i - 1) == b.charAt(j - 1))
+                 {                                                           // Characters match
+                    dp[i][j] = dp[i - 1][j - 1] + 1;                         // Increase the common subsequence length
+                } 
+                else 
+                {                                            // Characters do not match
+                    // Take the maximum length from either ignoring one character from `a` or from `b`
+                    dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+                }
+            }
+        }
+        
+        // The final result, the length of the longest common subsequence, is in the bottom-right cell
+        return dp[m][n];
+    }
+}
