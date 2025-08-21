@@ -1,5 +1,7 @@
-public class MaxSumAfterPartitioning {
-    static int maxSumAfterPartitioning(int[] num, int k) {
+public class MaxSumAfterPartitioning
+{
+    static int maxSumAfterPartitioning(int[] num, int k) 
+    {
         int n = num.length;
         int[] dp = new int[n + 1];
         
