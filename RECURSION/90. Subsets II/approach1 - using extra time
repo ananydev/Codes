@@ -1,0 +1,44 @@
+import java.util.*;
+class TUF {
+    static void printAns(List < String > ans) {
+        System.out.println("The unique subsets are ");
+        System.out.println(ans.toString().replace(",", " "));
+    }
+    public static void fun(int[] nums, int index, List < Integer > ds, HashSet < String > res) {
+        if (index == nums.length) {
+            Collections.sort(ds);
+            res.add(ds.toString());
+            return;
+        }
+        ds.add(nums[index]);
+        fun(nums, index + 1, ds, res);
+        ds.remove(ds.size() - 1);
+        fun(nums, index + 1, ds, res);
+    }
+    public static List < String > subsetsWithDup(int[] nums) {
+        List < String > ans = new ArrayList < > ();
+        HashSet < String > res = new HashSet < > ();
+        List < Integer > ds = new ArrayList < > ();
+        fun(nums, 0, ds, res);
+        for (String it: res) {
+            ans.add(it);
+        }
+        return ans;
+    }
+
+    public static void main(String args[]) {
+        int nums[]={1,2,2};
+        List < String > ans = subsetsWithDup(nums);
+        printAns(ans);
+
+    }
+
+}
+Output:
+
+The unique subsets are
+[ [ ][ 1 ][ 1 2 ][ 1 2 2 ][ 2 ][ 2 2 ] ]
+
+Time Complexity: O( 2^n *(k log (x) )). 2^n  for generating every subset and k* log( x)  to insert every combination of average length k in a set of size x. After this, we have to convert the set of combinations back into a list of list /vector of vectors which takes more time.
+
+Space Complexity:  O(2^n * k) to store every subset of average length k. Since we are initially using a set to store the answer another O(2^n *k) is also used.
