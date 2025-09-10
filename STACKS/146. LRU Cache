@@ -51,7 +51,7 @@ class LRUCache
         }
         if (map.size() == capacity) 
         {
-            remove(tail.prev);
+            remove(tail.prev) ;
         }
         insert(new Node(key, value));
     }
