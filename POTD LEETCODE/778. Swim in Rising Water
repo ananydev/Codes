@@ -12,7 +12,8 @@ class Solution
         int visited[][] = new int[n][n];
         visited[0][0] = 1;
 
-        while(q.size()!=0){
+        while(q.size()!=0)
+        {
             int a[] = q.remove();
             int r = a[0];
             int c = a[1];
