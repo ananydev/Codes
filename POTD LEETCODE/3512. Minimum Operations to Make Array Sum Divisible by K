@@ -1,0 +1,21 @@
+class Solution {
+    public int minOperations(int[] nums, int k) {
+        int sum = 0;
+        
+        // Step 1: Calculate total sum
+        for (int num : nums) {
+            sum += num;
+        }
+
+        // Step 2: Get the remainder
+        int remainder = sum % k;
+
+        // Step 3: If already divisible, no operations needed
+        if (remainder == 0) {
+            return 0;
+        }
+
+        // Step 4: Else, need 'remainder' operations to reduce sum
+        return remainder;
+    }
+}
