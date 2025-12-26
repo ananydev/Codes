@@ -1,0 +1,20 @@
+class Solution {
+    public int bestClosingTime(String s) {
+        int pen = 0;
+        for (char c : s.toCharArray())
+            if (c == 'Y') pen++;
+
+        int best = pen, ans = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == 'Y') pen--;
+            else pen++;
+
+            if (pen < best) {
+                best = pen;
+                ans = i + 1;
+            }
+        }
+        return ans;
+    }
+}
