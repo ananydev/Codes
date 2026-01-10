@@ -1,0 +1,92 @@
+// RECURSIVE HERE AND TABULATION DOWN 
+
+// class Solution 
+// {
+
+//     int m, n;
+
+//     public int minimumDeleteSum(String s1, String s2) {
+//         m = s1.length();
+//         n = s2.length();
+//         return solve(0, 0, s1, s2);
+//     }
+
+//     private int solve(int i, int j, String s1, String s2) {
+
+//         // both strings exhausted
+//         if (i >= m && j >= n)
+//             return 0;
+
+//         // s1 exhausted → delete remaining chars of s2
+//         if (i >= m) {
+//             return s2.charAt(j) + solve(i, j + 1, s1, s2);
+//         }
+
+//         // s2 exhausted → delete remaining chars of s1
+//         if (j >= n) {
+//             return s1.charAt(i) + solve(i + 1, j, s1, s2);
+//         }
+
+//         // characters match → no delete
+//         if (s1.charAt(i) == s2.charAt(j)) {
+//             return solve(i + 1, j + 1, s1, s2);
+//         }
+
+//         // two choices
+//         int deleteS1 = s1.charAt(i) + solve(i + 1, j, s1, s2);
+//         int deleteS2 = s2.charAt(j) + solve(i, j + 1, s1, s2);
+
+//         return Math.min(deleteS1, deleteS2);
+//     }
+// }
+
+
+
+class Solution {
+
+    int m, n;
+    int[][] dp;
+
+    public int minimumDeleteSum(String s1, String s2) {
+        m = s1.length();
+        n = s2.length();
+        dp = new int[m+1][n+1];
+
+        for (int i = 0; i <= m; i++)
+            for (int j = 0; j <= n; j++)
+                dp[i][j] = -1;
+
+        return solve(0, 0, s1, s2);
+    }
+
+    private int solve(int i, int j, String s1, String s2) {
+
+        // both strings finished
+        if (i >= m && j >= n)
+            return 0;
+
+        // s1 finished → delete remaining s2
+        if (i >= m) {
+            return dp[i][j] = s2.charAt(j) + solve(i, j + 1, s1, s2);
+        }
+
+        // s2 finished → delete remaining s1
+        if (j >= n) {
+            return dp[i][j] = s1.charAt(i) + solve(i + 1, j, s1, s2);
+        }
+
+        if (dp[i][j] != -1)
+            return dp[i][j];
+
+        // characters match → no deletion
+        if (s1.charAt(i) == s2.charAt(j)) {
+            return dp[i][j] = solve(i + 1, j + 1, s1, s2);
+        }
+
+        // two possibilities
+        int deleteS1 = s1.charAt(i) + solve(i + 1, j, s1, s2);
+        int deleteS2 = s2.charAt(j) + solve(i, j + 1, s1, s2);
+
+        return dp[i][j] = Math.min(deleteS1, deleteS2);
+    }
+}
