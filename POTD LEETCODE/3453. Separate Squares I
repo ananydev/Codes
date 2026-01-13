@@ -1,0 +1,60 @@
+class Solution {
+
+    // check if area below y is less than half of total area
+    private boolean check(double y, int[][] squares, double totalArea) {
+        double areaBelow = 0.0;
+
+        for (int[] sq : squares) {
+            double Y = sq[1];
+            double side = sq[2];
+
+            // square completely above the line
+            if (Y >= y) {
+                continue;
+            }
+
+            double top = Y + side;
+
+            // square completely below the line
+            if (top <= y) {
+                areaBelow += side * side;
+            }
+            // square is cut by the line
+            else {
+                areaBelow += (y - Y) * side;
+            }
+        }
+
+        return areaBelow < totalArea / 2.0;
+    }
+
+    public double separateSquares(int[][] squares) {
+
+        double low = Double.MAX_VALUE;
+        double high = 0.0;
+        double totalArea = 0.0;
+
+        // calculate bounds and total area
+        for (int[] sq : squares) {
+            double y = sq[1];
+            double side = sq[2];
+
+            low = Math.min(low, y);
+            high = Math.max(high, y + side);
+            totalArea += side * side;
+        }
+
+        // binary search on answer
+        for (int i = 0; i < 60; i++) { // precision loop
+            double mid = (low + high) / 2.0;
+
+            if (check(mid, squares, totalArea)) {
+                low = mid;
+            } else {
+                high = mid;
+            }
+        }
+
+        return low;
+    }
+}
