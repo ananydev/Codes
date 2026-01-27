@@ -1,0 +1,74 @@
+import java.util.*;
+
+class Solution {
+
+    static class Pair {
+        int node;
+        long cost;
+
+        Pair(int n, long c) {
+            node = n;
+            cost = c;
+        }
+    }
+
+    public int minCost(int n, int[][] edges) {
+
+        // graph = original edges
+        List<List<int[]>> graph = new ArrayList<>();
+        // rev = reverse adjacency (incoming edges)
+        List<List<int[]>> rev = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+            rev.add(new ArrayList<>());
+        }
+
+        for (int[] e : edges) {
+            int u = e[0], v = e[1], w = e[2];
+            graph.get(u).add(new int[]{v, w});  // original
+            rev.get(v).add(new int[]{u, w});    // store incoming
+        }
+
+        long[] dist = new long[n];
+        Arrays.fill(dist, Long.MAX_VALUE);
+        dist[0] = 0;
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>(
+                (a, b) -> Long.compare(a.cost, b.cost)
+        );
+
+        pq.add(new Pair(0, 0));
+
+        while (!pq.isEmpty()) {
+
+            Pair cur = pq.poll();
+            int u = cur.node;
+            long c = cur.cost;
+
+            if (c > dist[u]) continue;
+            if (u == n - 1) return (int) c;
+
+            // 🔹 NORMAL EDGES
+            for (int[] nei : graph.get(u)) {
+                int v = nei[0], w = nei[1];
+                if (dist[u] + w < dist[v]) {
+                    dist[v] = dist[u] + w;
+                    pq.add(new Pair(v, dist[v]));
+                }
+            }
+
+            // 🔹 REVERSED EDGE USING SWITCH AT u
+            for (int[] in : rev.get(u)) {
+                int v = in[0], w = in[1];
+                long newCost = dist[u] + 2L * w;
+                if (newCost < dist[v]) {
+                    dist[v] = newCost;
+                    pq.add(new Pair(v, dist[v]));
+                }
+            }
+        }
+
+        return -1;
+    }
+}
