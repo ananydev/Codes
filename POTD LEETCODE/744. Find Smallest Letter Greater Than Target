@@ -1,0 +1,33 @@
+BRUTE 
+// class Solution {
+//     public char nextGreatestLetter(char[] letters, char target) {
+//         for (char ch : letters) {
+//             if (ch > target) {
+//                 return ch;
+//             }
+//         }
+//         // If no greater character found, return first (wrap around)
+//         return letters[0];
+//     }
+// }
+
+
+OPTIMAL
+class Solution {
+    public char nextGreatestLetter(char[] letters, char target) {
+        int low = 0, high = letters.length - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (letters[mid] > target) {
+                high = mid - 1;  // try to find smaller valid letter
+            } else {
+                low = mid + 1;   // need greater letter
+            }
+        }
+
+        // low is the first index where letter > target
+        return letters[low % letters.length]; // handles wrap-around
+    }
+}
