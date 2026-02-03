@@ -1,0 +1,31 @@
+class Solution {
+    public boolean isTrionic(int[] nums) {
+        int n = nums.length;
+        if (n < 4) return false; // need at least 4 for 3 phases
+
+        int i = 0;
+
+        // Phase 1: strictly increasing
+        while (i + 1 < n && nums[i] < nums[i + 1]) {
+            i++;
+        }
+        if (i == 0) return false; // no increasing
+
+        // Phase 2: strictly decreasing
+        int peakIndex = i;
+        while (i + 1 < n && nums[i] > nums[i + 1]) {
+            i++;
+        }
+        if (i == peakIndex) return false; // no decreasing
+
+        // Phase 3: strictly increasing
+        int valleyIndex = i;
+        while (i + 1 < n && nums[i] < nums[i + 1]) {
+            i++;
+        }
+        if (i == valleyIndex) return false; // no last increase
+
+        // Must reach end
+        return i == n - 1;
+    }
+}
