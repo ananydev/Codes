@@ -1,0 +1,12 @@
+class Solution {
+    public boolean hasAlternatingBits(int n) {
+        int bit = n & 1;
+        while (n > 0) {
+            if ((n & 1) != bit)
+                return false;
+            n >>= 1;
+            bit = bit == 0 ? 1 : 0;
+        }
+        return true;
+    }
+}
