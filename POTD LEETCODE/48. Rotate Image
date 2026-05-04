@@ -1,0 +1,34 @@
+class Solution {
+    public void rotate(int[][] matrix) 
+    {
+
+        //transpose    TC - O(N/2 * N/2)
+        for(int i=0;i<matrix.length-1;i++)
+        {
+        for(int j=i+1;j<matrix.length;j++)
+        {
+            int temp=matrix[i][j];
+            matrix[i][j]=matrix[j][i];
+            matrix[j][i]=temp;
+        }
+        }
+
+    //reverse             TC - O(N * N/2)
+    for(int i=0;i<matrix.length;i++)
+    {
+        int left=0;
+        int right=matrix[0].length-1;
+
+        while(left<right)
+        {
+            int temp=matrix[i][left];
+            matrix[i][left]=matrix[i][right];
+            matrix[i][right]=temp;
+            left++;
+            right--;
+        }                                                        //  TOTAL TC -  O(N/2 * N/2) + O(N * N/2)
+                                               
+    }
+        
+    }
+}          
