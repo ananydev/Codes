@@ -1,0 +1,50 @@
+class Solution {
+    public int findMin(int[] nums) 
+    {
+         int n = nums.length;
+
+        int l=0, h=n-1;
+        int mid=0;
+        int ans = Integer.MAX_VALUE;
+
+        while(l<=h)
+        {
+            mid=(l+h)/2;
+
+            if(nums.length > 2 && nums[l]==nums[mid] && nums[mid]==nums[h])
+            {
+                ans = Math.min(ans, nums[mid]);
+                l++;
+                h--;
+            }
+
+            else if(nums[l]==nums[mid])
+            {
+                ans = Math.min(ans, nums[l]);
+                l=mid+1;
+            }
+            else if(nums[mid]==nums[h])
+            {
+                ans = Math.min(ans, nums[mid]);
+                h=mid-1;
+            }
+
+           
+
+            else if(nums[l]<=nums[mid])
+            {
+                ans = Math.min(ans, nums[l]);
+                l=mid+1;
+            }
+            else
+            {
+                ans = Math.min(ans, nums[mid]);
+                h=mid-1;
+
+
+            }
+        }
+        return ans;
+        
+    }
+}
