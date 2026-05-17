@@ -1,0 +1,29 @@
+class Solution {
+
+    public boolean canReach(int[] arr, int st) {
+
+        boolean[] vis = new boolean[arr.length];
+
+        return dfs(arr, st, vis);
+    }
+
+    public boolean dfs(int[] arr, int st, boolean[] vis) {
+
+        // invalid index
+        if(st < 0 || st >= arr.length)
+            return false;
+
+        // already visited
+        if(vis[st])
+            return false;
+
+        // found zero
+        if(arr[st] == 0)
+            return true;
+
+        vis[st] = true;
+
+        return dfs(arr, st - arr[st], vis) ||
+               dfs(arr, st + arr[st], vis);
+    }
+}
