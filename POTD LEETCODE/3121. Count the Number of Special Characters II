@@ -1,0 +1,44 @@
+class Solution {
+    public int numberOfSpecialChars(String word) 
+    {
+        int cnt = 0;
+
+        Map<Character, Integer> lower = new HashMap<>();
+        Map<Character, Integer> upper = new HashMap<>();
+
+        for(int i = 0; i < word.length(); i++)
+        {
+            char ch = word.charAt(i);
+
+            if(Character.isLowerCase(ch))
+            {
+                // store last lowercase index
+                lower.put(ch, i);
+            }
+            else
+            {
+                char small = Character.toLowerCase(ch);
+
+                // store first uppercase index
+                if(!upper.containsKey(small))
+                {
+                    upper.put(small, i);
+                }
+            }
+        }
+
+        for(int i = 0; i < 26; i++)
+        {
+            char ch = (char)('a' + i);
+
+            if(lower.containsKey(ch) &&
+               upper.containsKey(ch) &&
+               lower.get(ch) < upper.get(ch))
+            {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+}
