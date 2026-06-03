@@ -1,5 +1,6 @@
 //T.C : O(n+m)
 //S.C : O(1)
+
 class Solution {
 
     private int findFinishTime(int[] start1, int[] duration1, int[] start2, int[] duration2) {
